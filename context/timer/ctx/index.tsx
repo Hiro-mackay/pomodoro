@@ -5,7 +5,7 @@ import { ContextProviderType } from "@/utiles/contextProviderType";
 import { useTimer } from "@/hooks/useTimer";
 
 export interface TimerContextType extends ContextProviderType {
-  timer: Timer;
+  timer: Timer | null;
   start: () => null;
   stop: () => null;
   reset: () => null;
