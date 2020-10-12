@@ -1,4 +1,3 @@
-import React,{createContext, useContext, } from 'react';
 import { createCtx } from '@/utiles/createCtx';
 import { Credintial } from '@/authCtx/entityType';
 import {ContextProviderType} from '@/utiles/contextProviderType'
@@ -12,7 +11,7 @@ interface AuthProviderType extends ContextProviderType {
   logOut: any
 }
 
-const [useAuthContext, authContext] = createCtx<AuthProvAuthProviderTypeiderType>();
+const [useAuthContext, authContext] = createCtx<AuthProviderType>();
 const authProvider = authContext.Provider
 
 export { useAuthContext , authContext, authProvider};
