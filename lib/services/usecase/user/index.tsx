@@ -1,6 +1,7 @@
 import React from 'react';
-import {User, UserContextType} from '@/context'
-export const useUser = ():UserContextType => {
+import { User, UserContextType } from '@/context';
+
+export const useUserUsecase = (): UserContextType => {
   const [user, setUser] = React.useState<User | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [onLoad, setOnLoad] = React.useState<boolean>(false);
@@ -21,6 +22,5 @@ export const useUser = ():UserContextType => {
     error,
     create,
     update
-  }
-
-}
+  };
+};

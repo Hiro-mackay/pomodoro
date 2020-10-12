@@ -2,7 +2,7 @@ import React from "react";
 import { createCtx } from "@/utiles/createCtx";
 import { Timer } from "../entityType";
 import { ContextCommonType } from "@/utiles/contextCommonType";
-import { useTimer } from "@/hooks/useTimer";
+import { useTimerUsecase } from "@/usecase/timer";
 
 export interface TimerContextType extends ContextCommonType {
   timer: Timer | null;
@@ -15,7 +15,7 @@ export interface TimerContextType extends ContextCommonType {
 const [useTimerContext, TimerContext] = createCtx<TimerContextType>();
 
 const TimerProvider: React.FC = ({ children }) => {
-  const timer = useTimer();
+  const timer = useTimerUsecase();
   return <TimerContext.Provider value={timer}>{children}</TimerContext.Provider>
 };
 

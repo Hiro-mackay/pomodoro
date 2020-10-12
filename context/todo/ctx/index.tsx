@@ -2,7 +2,7 @@ import React from "react";
 import { createCtx } from "@/utiles/createCtx";
 import { Todo } from "../entity";
 import { ContextCommonType } from "@/utiles/contextCommonType";
-import { useTodo } from "@/hooks/useTodo";
+import { useTodoUsecase } from "@/usecase/todo";
 
 export interface TodoContextType extends ContextCommonType {
   todo: Todo | null;
@@ -14,7 +14,7 @@ export interface TodoContextType extends ContextCommonType {
 const [useTodoContext, TodoContext] = createCtx<TodoContextType>();
 
 const TodoProvider: React.FC = ({ children }) => {
-  const todo = useTodo();
+  const todo = useTodoUsecase();
   return <TodoContext.Provider value={todo}>{children}</TodoContext.Provider>
 };
 

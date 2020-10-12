@@ -1,7 +1,7 @@
 import React from 'react';
 import {Todo, TodoContextType} from '@/context'
 
-export const useTodo = (): TodoContextType => {
+export const useTodoUsecase = (): TodoContextType => {
   const [todo, setTodo] = React.useState<Todo | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [onLoad, setOnLoad] = React.useState<boolean>(false);
@@ -15,7 +15,7 @@ export const useTodo = (): TodoContextType => {
     return null
   };
 
-  const  remove = (): null => {
+  const remove = (): null => {
     return null
   };
 
@@ -27,5 +27,5 @@ export const useTodo = (): TodoContextType => {
     add,
     update,
     remove
-  }
-}
+  };
+};
