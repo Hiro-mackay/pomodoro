@@ -6,8 +6,8 @@ import { useUser } from "@/hooks/useUser";
 
 export interface UserContextType extends ContextProviderType {
   user: User;
-  create: (user:User) => null;
-  update: (use:User) => null;
+  create: (user: User) => null;
+  update: (use: User) => null;
 };
 
 const [useUserContext, UserContext] = createCtx<UserContextType>();
