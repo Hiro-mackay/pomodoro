@@ -6,10 +6,10 @@ import { useTimer } from "@/hooks/useTimer";
 
 export interface TimerContextType extends ContextProviderType {
   timer: Timer;
-  startTimer: () => null;
-  stopTimer: () => null;
-  resetTimer: () => null;
-  createTimer: () => null;
+  start: () => null;
+  stop: () => null;
+  reset: () => null;
+  create: () => null;
 };
 
 const [useTimerContext, TimerContext] = createCtx<TimerContextType>();
