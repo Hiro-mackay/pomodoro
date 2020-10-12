@@ -1,6 +1,5 @@
 import React from 'react'
-import { TimerContextType } from '@/context';
-import { Timer } from "@/context"
+import { TimerContextType, Timer } from '@/context';
 
 
 export const useTimer = (): TimerContextType => {

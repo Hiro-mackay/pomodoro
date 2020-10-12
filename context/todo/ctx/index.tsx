@@ -7,7 +7,7 @@ import { useTodo } from "@/hooks/useTodo";
 export interface TodoContextType extends ContextProviderType {
   todo: Todo;
   add: (todo:Todo) => null;
-  delete: (todoId: Todo['id']) => null;
+  remove: (todoId: Todo['id']) => null;
   update: (todoId: Todo['id'], title: Todo['title']) => null;
 };
 
