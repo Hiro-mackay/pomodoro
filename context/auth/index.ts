@@ -1,2 +1,2 @@
-export { authContext, useAuthContext, authProvider } from "./ctx";
-export type { Credintial } from "./entityType";
+export * from "./ctx";
+export type { Credential } from "./entityType";
