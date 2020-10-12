@@ -1,7 +1,7 @@
 import React from 'react';
-import { Credential, AuthProviderType , User} from '@/context';
+import { Credential, AuthContextType , User} from '@/context';
 
-export const useAuth = (): AuthProviderType => {
+export const useAuth = (): AuthContextType => {
   const [loading, setLoading] = React.useState<boolean>(false);
   const [onLoad, setOnLoad] = React.useState<boolean>(false);
   const [error, setError] = React.useState<Error | null>(null);

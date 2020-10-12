@@ -1,10 +1,10 @@
 import React from "react";
 import { createCtx } from "@/utiles/createCtx";
 import { Timer } from "../entityType";
-import { ContextProviderType } from "@/utiles/contextProviderType";
+import { ContextCommonType } from "@/utiles/contextCommonType";
 import { useTimer } from "@/hooks/useTimer";
 
-export interface TimerContextType extends ContextProviderType {
+export interface TimerContextType extends ContextCommonType {
   timer: Timer | null;
   start: () => null;
   stop: () => null;

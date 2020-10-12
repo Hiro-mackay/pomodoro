@@ -1,10 +1,10 @@
 import React from "react";
 import { createCtx } from "@/utiles/createCtx";
 import { User } from "../entity";
-import { ContextProviderType } from "@/utiles/contextProviderType";
+import { ContextCommonType } from "@/utiles/contextCommonType";
 import { useUser } from "@/hooks/useUser";
 
-export interface UserContextType extends ContextProviderType {
+export interface UserContextType extends ContextCommonType {
   user: User;
   create: (user: User) => null;
   update: (use: User) => null;

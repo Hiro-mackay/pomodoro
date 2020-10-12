@@ -1,10 +1,10 @@
 import React from "react";
 import { createCtx } from "@/utiles/createCtx";
 import { Todo } from "../entity";
-import { ContextProviderType } from "@/utiles/contextProviderType";
+import { ContextCommonType } from "@/utiles/contextCommonType";
 import { useTodo } from "@/hooks/useTodo";
 
-export interface TodoContextType extends ContextProviderType {
+export interface TodoContextType extends ContextCommonType {
   todo: Todo | null;
   add: (todo:Todo) => null;
   remove: (todoId: Todo['id']) => null;
