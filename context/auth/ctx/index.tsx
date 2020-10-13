@@ -12,11 +12,9 @@ export interface AuthContextType extends ContextCommonType {
 
 const [useAuthContext, AuthContext] = createCtx<AuthContextType>();
 
-
 const AuthProvider: React.FC = ({ children }) => {
   const auth = useAuthUsecase();
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>
-
 };
 
 export { useAuthContext, AuthContext, AuthProvider };

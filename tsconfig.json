@@ -20,6 +20,7 @@
       "@/timerCtx": ["context/timer"],
       "@/todoCtx": ["context/todo"],
       "@/userCtx": ["context/user"],
+      "@/groupCtx": ["context/group"],
     },
     "allowJs": true,
     "skipLibCheck": true,
