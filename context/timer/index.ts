@@ -1,2 +1,2 @@
 export * from "./ctx";
-export * from "./entityType";
+export * from "./entity";

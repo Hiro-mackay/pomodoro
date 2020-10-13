@@ -1,2 +1,2 @@
 export * from "./ctx";
-export type { Credential } from "./entityType";
+export type { Credential } from "./entity";

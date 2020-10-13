@@ -1,6 +1,6 @@
 import React from "react";
 import { createCtx } from "@/utiles/createCtx";
-import { Timer } from "../entityType";
+import { Timer } from "../entity";
 import { ContextCommonType } from "@/utiles/contextCommonType";
 import { useTimerUsecase } from "@/usecase/timer";
 

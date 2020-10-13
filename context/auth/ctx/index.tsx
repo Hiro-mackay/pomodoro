@@ -1,5 +1,5 @@
 import { createCtx } from "@/utiles/createCtx";
-import { Credential } from "../entityType";
+import { Credential } from "../entity";
 import { ContextCommonType } from "@/utiles/contextCommonType";
 import { User } from '@/context';
 import { useAuthUsecase } from '@/usecase/auth'

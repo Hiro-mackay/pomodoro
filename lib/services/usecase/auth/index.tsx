@@ -1,7 +1,6 @@
 import React from 'react';
 import { Credential, AuthContextType , User} from '@/context';
 
-
 export const useAuthUsecase = (): AuthContextType => {
   const [loading, setLoading] = React.useState<boolean>(false);
   const [onLoad, setOnLoad] = React.useState<boolean>(false);
