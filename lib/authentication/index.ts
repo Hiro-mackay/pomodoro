@@ -4,11 +4,11 @@ import {
   FirebaseAuthProvider,
   PROVIDER_TYPE,
 } from "@/utiles/firebaseAuthProviderInterface";
-import { FaceboookProvider } from "./firebaseAuth/facebookProvider";
+import { FacebookProvider } from "./firebaseAuth/facebookProvider";
 import { GoogleProvider } from "./firebaseAuth/googleProvider";
 
 export class AuthProvider implements FirebaseAuthProvider {
-  private provider: GoogleProvider | FaceboookProvider;
+  private provider: GoogleProvider | FacebookProvider;
   private auth: firebase.auth.Auth;
 
   constructor(provider: PROVIDER_TYPE) {
@@ -19,7 +19,7 @@ export class AuthProvider implements FirebaseAuthProvider {
   private getProvider = (provider: PROVIDER_TYPE) => {
     switch (provider) {
       case "facebook":
-        return new FaceboookProvider();
+        return new FacebookProvider();
       case "google":
         return new GoogleProvider();
       default:

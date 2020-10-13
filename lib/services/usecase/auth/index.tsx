@@ -6,11 +6,11 @@ export const useAuthUsecase = (): AuthContextType => {
   const [onLoad, setOnLoad] = React.useState<boolean>(false);
   const [error, setError] = React.useState<Error | null>(null);
 
-  const logIn = (credential: Credential): User | null => {
+  const logIn = (): User | null => {
     return null
   };
 
-  const signUp = (credential: Credential): User | null => {
+  const signUp = (): User | null => {
     return null
   };
 
