@@ -2,11 +2,12 @@ import { createCtx } from "@/utiles/createCtx";
 import { ContextCommonType } from "@/utiles/contextCommonType";
 import { User } from '@/context';
 import { useAuthUsecase } from '@/usecase/auth'
+import { PROVIDER_TYPE } from "@/utiles/firebaseAuthProviderInterface";
 
 export interface AuthContextType extends ContextCommonType {
-  logIn: () => User | null;
-  signUp: () => User | null;
-  logOut: () => null;
+  logIn: (provider: PROVIDER_TYPE) => Promise<User | null>;
+  logOut: () => Promise<void>;
+  onAuthState: () => Promise<User | null>;
 }
 
 const [useAuthContext, AuthContext] = createCtx<AuthContextType>();

@@ -1,9 +1,11 @@
+import { User } from "@/userCtx";
 import firebase from "firebase";
 
 export interface FirebaseAuthProvider {
-  logIn: () => Promise<firebase.auth.UserCredential>;
+  logIn: (provider: PROVIDER_TYPE) => Promise<firebase.auth.UserCredential>;
   logOut: () => Promise<void>;
   onAuthState: () => Promise<firebase.User>;
+  toUserEntity: (user: firebase.User | null) => User | null;
 }
 
 export interface FirebaseAuthSnsProvider {

@@ -6,13 +6,13 @@ import {
 } from "@/utiles/firebaseAuthProviderInterface";
 import { FacebookProvider } from "./firebaseAuth/facebookProvider";
 import { GoogleProvider } from "./firebaseAuth/googleProvider";
+import { User } from "@/userCtx";
 
 export class AuthProvider implements FirebaseAuthProvider {
   private provider: GoogleProvider | FacebookProvider;
   private auth: firebase.auth.Auth;
 
-  constructor(provider: PROVIDER_TYPE) {
-    this.provider = this.getProvider(provider);
+  constructor() {
     this.auth = firebaseApp.auth();
   }
 
@@ -29,7 +29,14 @@ export class AuthProvider implements FirebaseAuthProvider {
     }
   };
 
-  logIn = () => this.provider.logIn();
+  logIn = (provider: PROVIDER_TYPE) => {
+    try {
+      this.provider = this.getProvider(provider);
+      return this.provider.logIn();
+    } catch (error) {
+      throw error;
+    }
+  };
 
   logOut = () => this.auth.signOut();
 
@@ -43,4 +50,14 @@ export class AuthProvider implements FirebaseAuthProvider {
         (error) => reject(error)
       );
     });
+
+  toUserEntity = (user: firebase.User | null): User | null => {
+    if (user === null) return null;
+
+    return {
+      id: user.uid,
+      email: user.email,
+      name: user.displayName,
+    };
+  };
 }
