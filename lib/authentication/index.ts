@@ -9,7 +9,6 @@ import { GoogleProvider } from "./firebaseAuth/googleProvider";
 import { User } from "@/userCtx";
 
 export class AuthProvider implements FirebaseAuthProvider {
-  private provider: GoogleProvider | FacebookProvider;
   private auth: firebase.auth.Auth;
 
   constructor() {
@@ -29,10 +28,10 @@ export class AuthProvider implements FirebaseAuthProvider {
     }
   };
 
-  logIn = (provider: PROVIDER_TYPE) => {
+  logIn = (provideType: PROVIDER_TYPE) => {
     try {
-      this.provider = this.getProvider(provider);
-      return this.provider.logIn();
+      const provider = this.getProvider(provideType);
+      return provider.logIn();
     } catch (error) {
       throw error;
     }
