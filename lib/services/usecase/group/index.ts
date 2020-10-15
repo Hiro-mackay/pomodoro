@@ -5,7 +5,6 @@ import React from "react";
 
 export const useGroupUsecase = (): GroupContextType => {
   const [group, setGroup] = React.useState<Group | null>(null);
-  const [loading, setLoading] = React.useState<boolean>(false);
   const [onLoad, setOnLoad] = React.useState<boolean>(false);
   const [error, setError] = React.useState<Error | null>(null);
 
@@ -21,7 +20,6 @@ export const useGroupUsecase = (): GroupContextType => {
 
   return {
     group,
-    loading,
     onLoad,
     error,
     create,

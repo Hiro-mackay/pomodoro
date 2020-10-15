@@ -4,7 +4,6 @@ import { TimerContextType, Timer } from '@/context';
 
 export const useTimerUsecase = (): TimerContextType => {
   const [timer, setTimer] = React.useState<Timer | null>(null)
-  const [loading, setLoading] = React.useState<boolean>(false);
   const [onLoad, setOnLoad] = React.useState<boolean>(false);
   const [error, setError] = React.useState<Error | null>(null);
 
@@ -26,7 +25,6 @@ export const useTimerUsecase = (): TimerContextType => {
 
   return {
     timer,
-    loading,
     onLoad,
     error,
     start,

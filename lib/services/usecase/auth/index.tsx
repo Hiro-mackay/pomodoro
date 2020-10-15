@@ -17,6 +17,7 @@ export const useAuthUsecase = (): AuthContextType => {
   const logIn = async (provider: PROVIDER_TYPE) => {
     setOnLoad(false);
     try {
+
       const userCredential = await authProvider.logIn(provider);
       const authState = await authProvider.getUserAuthenData(userCredential.user);
       setOnLoad(true);
@@ -52,11 +53,12 @@ export const useAuthUsecase = (): AuthContextType => {
 
   const setUserCredentialHelper = (authState: UserAuthenticationInfo | void) => {
     if (authState) {
-      const [user, token] = authState
+      const [userCredential, token] = authState
+
       setUserCredential({
         status: 'in',
-        user: authProvider.toUserEntity(user),
-        token
+        user: authProvider.toUserEntity(userCredential),
+        token: token
       });
     } else {
       setUserCredential({
@@ -68,6 +70,7 @@ export const useAuthUsecase = (): AuthContextType => {
   }
 
   return {
+    userCredential,
     onLoad,
     error,
     logIn,

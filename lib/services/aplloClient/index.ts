@@ -7,20 +7,20 @@ import { WebSocketLink } from "apollo-link-ws";
 import { SubscriptionClient } from "subscriptions-transport-ws";
 
 let accessToken = null;
+const hasuraEndPoint = process.env.HASURA_GRAPHQL_END_POINT;
 
 const requestAccessToken = async () => {
   if (accessToken) return;
-
   const res = await fetch(`${process.env.APP_HOST}/api/session`);
   if (res.ok) {
     const json = await res.json();
-    accessToken = json.asseccToken;
+    accessToken = json.accessToken;
   } else {
     accessToken = "public";
   }
 };
 
-const resetToken = onError(({ networkError }) => {
+const resetTokenLink = onError(({ networkError }) => {
   if (
     networkError &&
     networkError.name === "ServerError" &&
@@ -32,20 +32,21 @@ const resetToken = onError(({ networkError }) => {
 
 const createHttpLink = (headers) => {
   const httpLink = new HttpLink({
-    uri: "https://vast-viper-60.hasura.app/v1/graphql",
+    uri: `https://${hasuraEndPoint}`,
     credentials: "include",
-    headers,
+    headers, // auth token is fetched on the server side
     fetch,
   });
   return httpLink;
 };
+
 const createWSLink = () => {
   return new WebSocketLink(
-    new SubscriptionClient("wss://vast-viper-60.hasura.app/v1/graphql", {
+    new SubscriptionClient(`wss:///${hasuraEndPoint}`, {
       lazy: true,
       reconnect: true,
       connectionParams: async () => {
-        await requestAccessToken();
+        await requestAccessToken(); // happens on the client
         return {
           headers: {
             authorization: accessToken ? `Bearer ${accessToken}` : "",
@@ -56,17 +57,17 @@ const createWSLink = () => {
   );
 };
 
-export default function creaeApolloClien(initialState, headers) {
+export const createApolloClient = (initialState, headers) => {
   const ssrMode = typeof window === "undefined";
   let link;
   if (ssrMode) {
-    link = createHttpLink(headers);
+    link = createHttpLink(headers); // executed on server
   } else {
-    link = createWSLink();
+    link = createWSLink(); // executed on client
   }
   return new ApolloClient({
     ssrMode,
     link,
     cache: new InMemoryCache().restore(initialState),
   });
-}
+};

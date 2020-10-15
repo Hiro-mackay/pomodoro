@@ -15,6 +15,7 @@
       "@/services/*": ["lib/services/*"],
       "@/utiles/*": ["lib/utiles/*"],
       "@/authentication": ["lib/authentication"],
+      "@/dataStore/*": ["lib/dataStore/*"],
       "@/context": ["context"],
       "@/authCtx": ["context/auth"],
       "@/timerCtx": ["context/timer"],
@@ -37,6 +38,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
+    "**/*.tsx",
   ],
   "exclude": [
     "node_modules"
