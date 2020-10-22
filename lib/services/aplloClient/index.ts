@@ -7,7 +7,9 @@ import { WebSocketLink } from "apollo-link-ws";
 import { SubscriptionClient } from "subscriptions-transport-ws";
 
 let accessToken = null;
-const hasuraEndPoint = process.env.HASURA_GRAPHQL_END_POINT;
+
+const hasuraHttpEndPoint = process.env.HASURA_GRAPHQL_END_POINT_HTTP;
+const hasuraWssEndPoint = process.env.HASURA_GRAPHQL_END_POINT_WSS;
 
 const requestAccessToken = async () => {
   if (accessToken) return;
@@ -32,7 +34,7 @@ const resetTokenLink = onError(({ networkError }) => {
 
 const createHttpLink = (headers) => {
   const httpLink = new HttpLink({
-    uri: `https://${hasuraEndPoint}`,
+    uri: hasuraHttpEndPoint,
     credentials: "include",
     headers, // auth token is fetched on the server side
     fetch,
@@ -42,7 +44,7 @@ const createHttpLink = (headers) => {
 
 const createWSLink = () => {
   return new WebSocketLink(
-    new SubscriptionClient(`wss:///${hasuraEndPoint}`, {
+    new SubscriptionClient(hasuraWssEndPoint, {
       lazy: true,
       reconnect: true,
       connectionParams: async () => {

@@ -4,6 +4,19 @@ import React from 'react'
 
 export const IndexPage = () => {
   const auth = useAuthContext()
+  const queryStr = "query MyQuery { users { id email } }"
+  const query = { query: queryStr }
+
+  const fetchUsers = () => {
+    fetch('https://vast-viper-60.hasura.app/v1/graphql', {
+      method: 'POST',
+      body: JSON.stringify(query)
+    }).then(response => {
+      response.json().then(result => {
+        console.log(result.data)
+      })
+    })
+  }
 
   return (
     <div>
@@ -16,6 +29,9 @@ export const IndexPage = () => {
       </button>
       <button onClick={() => auth.logOut()}>
         Logout
+      </button>
+      <button onClick={fetchUsers}>
+        fetch
       </button>
 
         <div>

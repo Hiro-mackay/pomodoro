@@ -18,7 +18,7 @@ export const useAuthUsecase = (): AuthContextType => {
     setOnLoad(false);
     try {
       await authProvider.logIn(provider);
-      await onAuthState()
+      await onAuthState();
     } catch (error) {
       setError(error)
       setOnLoad(true);
@@ -29,8 +29,7 @@ export const useAuthUsecase = (): AuthContextType => {
     setOnLoad(false);
     try {
       await authProvider.logOut();
-      await onAuthState()
-
+      await onAuthState();
     } catch (error) {
       setError(error)
       setOnLoad(true);
