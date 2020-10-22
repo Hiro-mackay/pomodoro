@@ -15,6 +15,7 @@ const getUserSnapshot = async (
       .doc(user.uid)
       .onSnapshot(
         async () => {
+          console.log("create hasuraClaim token");
           const token = await user.getIdToken(true);
           resolve([user, token]);
         },

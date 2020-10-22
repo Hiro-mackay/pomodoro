@@ -41,13 +41,13 @@ export class AuthProvider implements FirebaseAuthProvider {
       const unsubscribe = this.auth.onAuthStateChanged(
         async (user) => {
           unsubscribe();
-          resolve(this.getUserAuthenData(user));
+          resolve(await this.getUserAuthenData(user));
         },
         (error) => reject(error)
       );
     });
 
-  getUserAuthenData = async (user: firebase.User | null) =>
+  getUserAuthenData = (user: firebase.User | null) =>
     getUserAuthenticationdataData(user);
 
   toUserEntity = (user: firebase.User | null): User | null => {

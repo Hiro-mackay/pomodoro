@@ -17,11 +17,8 @@ export const useAuthUsecase = (): AuthContextType => {
   const logIn = async (provider: PROVIDER_TYPE) => {
     setOnLoad(false);
     try {
-
-      const userCredential = await authProvider.logIn(provider);
-      const authState = await authProvider.getUserAuthenData(userCredential.user);
-      setOnLoad(true);
-      setUserCredentialHelper(authState);
+      await authProvider.logIn(provider);
+      await onAuthState()
     } catch (error) {
       setError(error)
       setOnLoad(true);
@@ -32,8 +29,8 @@ export const useAuthUsecase = (): AuthContextType => {
     setOnLoad(false);
     try {
       await authProvider.logOut();
-      setOnLoad(true);
-      setUserCredentialHelper();
+      await onAuthState()
+
     } catch (error) {
       setError(error)
       setOnLoad(true);
@@ -54,7 +51,6 @@ export const useAuthUsecase = (): AuthContextType => {
   const setUserCredentialHelper = (authState: UserAuthenticationInfo | void) => {
     if (authState) {
       const [userCredential, token] = authState
-
       setUserCredential({
         status: 'in',
         user: authProvider.toUserEntity(userCredential),
@@ -68,6 +64,10 @@ export const useAuthUsecase = (): AuthContextType => {
       });
     };
   }
+
+  React.useEffect(() => {
+    onAuthState()
+  }, []);
 
   return {
     userCredential,

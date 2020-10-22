@@ -4,7 +4,7 @@ import React from 'react'
 
 export const IndexPage = () => {
   const auth = useAuthContext()
-  console.log(auth.userCredential);
+
   return (
     <div>
       <h1>YES</h1>
@@ -14,16 +14,22 @@ export const IndexPage = () => {
       <button onClick={() => auth.logIn('facebook')}>
         Faceboook Login
       </button>
+      <button onClick={() => auth.logOut()}>
+        Logout
+      </button>
 
-      <div>
-        status: {auth.userCredential.status}
-      </div>
-      <div>
-        user: {auth.userCredential.user?.name}
-      </div>
-      <div>
-        token: {auth.userCredential.token}
-      </div>
+        <div>
+          <div>
+            status: {auth.userCredential.status}
+          </div>
+          <div>
+            user: {auth.userCredential.user?.name}
+          </div>
+          <div>
+            token: {auth.userCredential.token}
+          </div>
+        </div>
+
     </div>
   );
 }
