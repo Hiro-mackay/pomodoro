@@ -8,12 +8,15 @@ import { SubscriptionClient } from "subscriptions-transport-ws";
 
 let accessToken = null;
 
-const hasuraEndPointHttp = process.env.HASURA_GRAPHQL_END_POINT_HTTP;
-const hasuraEndPointWss = process.env.HASURA_GRAPHQL_END_POINT_WSS;
+const hasuraEndPointHttp = process.env.NEXT_PUBLIC_HASURA_END_POINT_HTTP;
+const hasuraEndPointWss = process.env.NEXT_PUBLIC_HASURA_END_POINT_WSS;
+
+console.log("hasuraEndPointHttp", hasuraEndPointHttp);
+console.log("hasuraEndPointWss", hasuraEndPointWss);
 
 const requestAccessToken = async () => {
   if (accessToken) return;
-  const res = await fetch(`${process.env.APP_HOST}/api/session`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/session`);
   if (res.ok) {
     const json = await res.json();
     accessToken = json.accessToken;
